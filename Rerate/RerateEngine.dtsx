@@ -1,0 +1,2196 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/18/2013 4:20:45 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DWHSTAGE"
+  DTS:CreatorName="DWHSTAGE\DWHstage_admin"
+  DTS:DTSID="{92B598A3-9538-476B-93DE-2D625F02ABA2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.5000.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="RerateEngine"
+  DTS:PackageType="5"
+  DTS:VersionBuild="281"
+  DTS:VersionGUID="{FAECFE14-FF1B-4628-881B-813D3F5E6314}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[10.138.84.232.BILLING_Control.DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2FA4353A-1706-4DD6-A9DE-83F2E4D5D5BE}"
+      DTS:ObjectName="10.138.84.232.BILLING_Control.DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=10.138.84.232;User ID=DWH;Initial Catalog=BILLING_Control;Provider=SQLNCLI11;Persist Security Info=True;Application Name=SSIS-BILLING_Engine-{2FA4353A-1706-4DD6-A9DE-83F2E4D5D5BE}10.138.84.232.BILLING_Control.DWH;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{28D64549-40D1-464E-90FB-6A654CFC5B46}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="i">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{558A5FD1-E4CF-4813-A32A-3872B815D297}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Run_Date">
+      <DTS:VariableValue
+        DTS:DataType="8">20140101</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CEE89C9A-1B47-40ED-A11E-543C2BF09123}"
+      DTS:Expression="@[User::Run_Date] -1"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Run_Last_Date">
+      <DTS:VariableValue
+        DTS:DataType="8">20140101</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{A5FC16D6-3A19-4998-916A-0DE4605014D1}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Load RTB to Main temp"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Load RTB to Main temp"
+          DTS:DTSID="{A216628A-ECFB-486B-B7AF-F018A562C14D}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load RTB to Main temp"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\Load RTB to Main temp\Conditional Split"
+                  componentClassID="Microsoft.ConditionalSplit"
+                  contactInfo="Conditional Split;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Evaluates and directs rows in a dataset."
+                  name="Conditional Split"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Inputs[Conditional Split Input].Columns[TYPE_OF_CDR]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TYPE_OF_CDR"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TYPE_OF_CDR]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Inputs[Conditional Split Input].Columns[call_date]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="call_date"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_date]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Inputs[Conditional Split Input].Columns[sms_date]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="sms_date"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[sms_date]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Outputs[call]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="call"
+                      synchronousInputId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">#{Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_date]} == @[User::Run_Date] &amp;&amp; #{Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TYPE_OF_CDR]} == "1"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">call_date == @[User::Run_Date] &amp;&amp; TYPE_OF_CDR == "1"</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Outputs[sms]"
+                      description="Output 2 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="sms"
+                      synchronousInputId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">#{Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[sms_date]} == @[User::Run_Date] &amp;&amp; #{Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TYPE_OF_CDR]} == "2"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">sms_date == @[User::Run_Date] &amp;&amp; TYPE_OF_CDR == "2"</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">1</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Outputs[data]"
+                      description="Output 3 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="data"
+                      synchronousInputId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">#{Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_date]} == @[User::Run_Date] &amp;&amp; #{Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TYPE_OF_CDR]} == "5"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">call_date == @[User::Run_Date] &amp;&amp; TYPE_OF_CDR == "5"</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">2</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Outputs[Conditional Split Default Output]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Conditional Split Default Output"
+                      synchronousInputId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[temp_P18SC12]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="{D58ECD58-90CE-4E08-9129-048FA7F9F06A}:invalid"
+                      connectionManagerRefId="{D58ECD58-90CE-4E08-9129-048FA7F9F06A}:invalid"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[anumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="anumber"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[anumber]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[anumber]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DIALEDDIGITS]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="DIALEDDIGITS"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DIALEDDIGITS]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIALEDDIGITS]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[call_start]"
+                          cachedDataType="dbTime2"
+                          cachedName="call_start"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[call_start]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_start]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[call_end]"
+                          cachedDataType="dbTime2"
+                          cachedName="call_end"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[call_end]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_end]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[duration]"
+                          cachedDataType="r8"
+                          cachedName="duration"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[duration]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[duration]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CHARGEABLEAMOUNT]"
+                          cachedDataType="r8"
+                          cachedName="CHARGEABLEAMOUNT"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CHARGEABLEAMOUNT]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CHARGEABLEAMOUNT]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[COSID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="COSID"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COSID]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[COSID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[application_subtype]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="application_subtype"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[application_subtype]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[application_subtype]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ACTIVITY_DIRECTION]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ACTIVITY_DIRECTION"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ACTIVITY_DIRECTION]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[ACTIVITY_DIRECTION]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TOTAL_NON_CURRENCY_CHARGE]"
+                          cachedDataType="r8"
+                          cachedName="TOTAL_NON_CURRENCY_CHARGE"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TOTAL_NON_CURRENCY_CHARGE]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTAL_NON_CURRENCY_CHARGE]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DISCOUNT_ALCS_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="DISCOUNT_ALCS_ID"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DISCOUNT_ALCS_ID]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[DISCOUNT_ALCS_ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CELL_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CELL_ID"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CELL_ID]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CELL_ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[call_date]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="call_date"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[informationdate]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_date]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TYPE_OF_CDR]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TYPE_OF_CDR"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[service_type]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TYPE_OF_CDR]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CDR_CALL_TYPE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="CDR_CALL_TYPE"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cdr_call_type]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CDR_CALL_TYPE]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MSC_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="MSC_ID"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MSC_ID]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[MSC_ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MSRN]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="MSRN"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MSRN]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[MSRN]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RecordID]"
+                          dataType="i8"
+                          name="RecordID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[informationdate]"
+                          dataType="i4"
+                          name="informationdate" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[service_type]"
+                          dataType="i4"
+                          name="service_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[anumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="12"
+                          name="anumber" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DIALEDDIGITS]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DIALEDDIGITS" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[call_start]"
+                          dataType="dbTime2"
+                          name="call_start"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[call_end]"
+                          dataType="dbTime2"
+                          name="call_end"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[duration]"
+                          dataType="r8"
+                          name="duration" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CHARGEABLEAMOUNT]"
+                          dataType="r8"
+                          name="CHARGEABLEAMOUNT" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COSID]"
+                          dataType="i4"
+                          name="COSID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[application_subtype]"
+                          dataType="i4"
+                          name="application_subtype" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ACTIVITY_DIRECTION]"
+                          dataType="i4"
+                          name="ACTIVITY_DIRECTION" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TOTAL_NON_CURRENCY_CHARGE]"
+                          dataType="r8"
+                          name="TOTAL_NON_CURRENCY_CHARGE" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DISCOUNT_ALCS_ID]"
+                          dataType="i4"
+                          name="DISCOUNT_ALCS_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CELL_ID]"
+                          dataType="i4"
+                          name="CELL_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cdr_call_type]"
+                          dataType="i4"
+                          name="cdr_call_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MSC_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MSC_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MSRN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MSRN" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination 1"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[temp_P18SC12]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Connections[OleDbConnection]"
+                      connectionManagerID="{D58ECD58-90CE-4E08-9129-048FA7F9F06A}:invalid"
+                      connectionManagerRefId="{D58ECD58-90CE-4E08-9129-048FA7F9F06A}:invalid"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[anumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="anumber"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[anumber]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[anumber]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[DIALEDDIGITS]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="DIALEDDIGITS"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DIALEDDIGITS]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIALEDDIGITS]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[duration]"
+                          cachedDataType="r8"
+                          cachedName="duration"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[duration]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[duration]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[CHARGEABLEAMOUNT]"
+                          cachedDataType="r8"
+                          cachedName="CHARGEABLEAMOUNT"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[CHARGEABLEAMOUNT]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CHARGEABLEAMOUNT]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[COSID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="COSID"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[COSID]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[COSID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[application_subtype]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="application_subtype"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[application_subtype]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[application_subtype]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[ACTIVITY_DIRECTION]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ACTIVITY_DIRECTION"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ACTIVITY_DIRECTION]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[ACTIVITY_DIRECTION]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[TOTAL_NON_CURRENCY_CHARGE]"
+                          cachedDataType="r8"
+                          cachedName="TOTAL_NON_CURRENCY_CHARGE"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TOTAL_NON_CURRENCY_CHARGE]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTAL_NON_CURRENCY_CHARGE]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[DISCOUNT_ALCS_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="DISCOUNT_ALCS_ID"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DISCOUNT_ALCS_ID]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[DISCOUNT_ALCS_ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[CELL_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CELL_ID"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[CELL_ID]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CELL_ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sms_date]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="sms_date"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[informationdate]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[sms_date]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[cdr_type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="cdr_type"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[service_type]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[cdr_type]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sms_time]"
+                          cachedDataType="dbTime2"
+                          cachedName="sms_time"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[call_start]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[sms_time]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[CDR_CALL_TYPE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="CDR_CALL_TYPE"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[cdr_call_type]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CDR_CALL_TYPE]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[MSC_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="MSC_ID"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[MSC_ID]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[MSC_ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[MSRN]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="MSRN"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[MSRN]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[MSRN]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RecordID]"
+                          dataType="i8"
+                          name="RecordID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[informationdate]"
+                          dataType="i4"
+                          name="informationdate" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[service_type]"
+                          dataType="i4"
+                          name="service_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[anumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="12"
+                          name="anumber" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DIALEDDIGITS]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DIALEDDIGITS" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[call_start]"
+                          dataType="dbTime2"
+                          name="call_start"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[call_end]"
+                          dataType="dbTime2"
+                          name="call_end"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[duration]"
+                          dataType="r8"
+                          name="duration" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[CHARGEABLEAMOUNT]"
+                          dataType="r8"
+                          name="CHARGEABLEAMOUNT" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[COSID]"
+                          dataType="i4"
+                          name="COSID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[application_subtype]"
+                          dataType="i4"
+                          name="application_subtype" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ACTIVITY_DIRECTION]"
+                          dataType="i4"
+                          name="ACTIVITY_DIRECTION" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TOTAL_NON_CURRENCY_CHARGE]"
+                          dataType="r8"
+                          name="TOTAL_NON_CURRENCY_CHARGE" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DISCOUNT_ALCS_ID]"
+                          dataType="i4"
+                          name="DISCOUNT_ALCS_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[CELL_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CELL_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[cdr_call_type]"
+                          dataType="i4"
+                          name="cdr_call_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[MSC_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MSC_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[MSRN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MSRN" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination 2"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[temp_P18SC12]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Connections[OleDbConnection]"
+                      connectionManagerID="{D58ECD58-90CE-4E08-9129-048FA7F9F06A}:invalid"
+                      connectionManagerRefId="{D58ECD58-90CE-4E08-9129-048FA7F9F06A}:invalid"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[anumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="anumber"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[anumber]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[anumber]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[DIALEDDIGITS]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="DIALEDDIGITS"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[DIALEDDIGITS]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIALEDDIGITS]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[call_start]"
+                          cachedDataType="dbTime2"
+                          cachedName="call_start"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[call_start]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_start]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[call_end]"
+                          cachedDataType="dbTime2"
+                          cachedName="call_end"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[call_end]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_end]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[duration]"
+                          cachedDataType="r8"
+                          cachedName="duration"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[duration]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[duration]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[CHARGEABLEAMOUNT]"
+                          cachedDataType="r8"
+                          cachedName="CHARGEABLEAMOUNT"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[CHARGEABLEAMOUNT]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CHARGEABLEAMOUNT]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[COSID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="COSID"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[COSID]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[COSID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[application_subtype]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="application_subtype"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[application_subtype]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[application_subtype]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[ACTIVITY_DIRECTION]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ACTIVITY_DIRECTION"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[ACTIVITY_DIRECTION]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[ACTIVITY_DIRECTION]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[TOTAL_NON_CURRENCY_CHARGE]"
+                          cachedDataType="r8"
+                          cachedName="TOTAL_NON_CURRENCY_CHARGE"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[TOTAL_NON_CURRENCY_CHARGE]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTAL_NON_CURRENCY_CHARGE]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[DISCOUNT_ALCS_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="DISCOUNT_ALCS_ID"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[DISCOUNT_ALCS_ID]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[DISCOUNT_ALCS_ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[CELL_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CELL_ID"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[CELL_ID]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CELL_ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[call_date]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="call_date"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[informationdate]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_date]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[TYPE_OF_CDR]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TYPE_OF_CDR"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[service_type]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TYPE_OF_CDR]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[CDR_CALL_TYPE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="CDR_CALL_TYPE"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[cdr_call_type]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CDR_CALL_TYPE]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[MSC_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="MSC_ID"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[MSC_ID]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[MSC_ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[MSRN]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="MSRN"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[MSRN]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[MSRN]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[RecordID]"
+                          dataType="i8"
+                          name="RecordID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[informationdate]"
+                          dataType="i4"
+                          name="informationdate" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[service_type]"
+                          dataType="i4"
+                          name="service_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[anumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="12"
+                          name="anumber" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[DIALEDDIGITS]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DIALEDDIGITS" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[call_start]"
+                          dataType="dbTime2"
+                          name="call_start"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[call_end]"
+                          dataType="dbTime2"
+                          name="call_end"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[duration]"
+                          dataType="r8"
+                          name="duration" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[CHARGEABLEAMOUNT]"
+                          dataType="r8"
+                          name="CHARGEABLEAMOUNT" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[COSID]"
+                          dataType="i4"
+                          name="COSID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[application_subtype]"
+                          dataType="i4"
+                          name="application_subtype" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[ACTIVITY_DIRECTION]"
+                          dataType="i4"
+                          name="ACTIVITY_DIRECTION" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[TOTAL_NON_CURRENCY_CHARGE]"
+                          dataType="r8"
+                          name="TOTAL_NON_CURRENCY_CHARGE" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[DISCOUNT_ALCS_ID]"
+                          dataType="i4"
+                          name="DISCOUNT_ALCS_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[CELL_ID]"
+                          dataType="i4"
+                          name="CELL_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[cdr_call_type]"
+                          dataType="i4"
+                          name="cdr_call_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[MSC_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MSC_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[MSRN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MSRN" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT TYPE_OF_CDR
+      ,case   when TYPE_OF_CDR='2' and PMT_SUBSCRIBER_TYPE='MOtoMT' then '6'
+             when TYPE_OF_CDR='2' and PMT_SUBSCRIBER_TYPE='MOtoAPP' then '7'
+             when TYPE_OF_CDR='2' and PMT_SUBSCRIBER_TYPE='APPtoMT' then '8' 
+      end 'cdr_type'
+     ,SUBSCRIBER_ID AS anumber
+     ,CASE WHEN DESTINATION_NUMBER LIKE '000%' THEN SUBSTRING(DESTINATION_NUMBER,4,LEN(DESTINATION_NUMBER) -3) 
+           WHEN DESTINATION_NUMBER LIKE '00%'  THEN SUBSTRING(DESTINATION_NUMBER,3,LEN(DESTINATION_NUMBER) -2) 
+	       ELSE DESTINATION_NUMBER 
+      END AS  [DIALEDDIGITS]
+     ,DISCONNECT_DATE  as call_date
+	 ,ORIGINATE_OFFER_DATE  as sms_date
+     ,ANSWERED_TIME as call_start
+     ,DISCONNECT_TIME as call_end
+	 ,ORIGINATE_OFFER_TIME as sms_time
+     ,TOTAL_USAGE  AS duration
+     ,TOTAL_CURRENCY_CHARGE  as CHARGEABLEAMOUNT
+     ,COS_ID [COSID]
+     ,cast(cast(application_subtype as float) as int) application_subtype 
+     ,cast(cast(ACTIVITY_DIRECTION as float) as int)  ACTIVITY_DIRECTION
+     ,TOTAL_NON_CURRENCY_CHARGE 
+     ,cast(cast(DISCOUNT_ALCS_ID as float) as int) DISCOUNT_ALCS_ID 
+     ,CELL_ID 
+     ,cast(cast(CDR_CALL_TYPE as float) as int) CDR_CALL_TYPE
+     ,MSC_ID
+     ,MSRN
+FROM [BILLING_Control].[dbo].[ComverseRTB_Mediate] WITH(NOLOCK)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[10.138.84.232.BILLING_Control.DWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[10.138.84.232.BILLING_Control.DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TYPE_OF_CDR]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TYPE_OF_CDR]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TYPE_OF_CDR]"
+                          name="TYPE_OF_CDR"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[cdr_type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cdr_type]"
+                          length="1"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[cdr_type]"
+                          name="cdr_type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[anumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[anumber]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[anumber]"
+                          name="anumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIALEDDIGITS]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DIALEDDIGITS]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIALEDDIGITS]"
+                          name="DIALEDDIGITS"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_date]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[call_date]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_date]"
+                          name="call_date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[sms_date]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sms_date]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[sms_date]"
+                          name="sms_date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_start]"
+                          dataType="dbTime2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[call_start]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_start]"
+                          name="call_start"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_end]"
+                          dataType="dbTime2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[call_end]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[call_end]"
+                          name="call_end"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[sms_time]"
+                          dataType="dbTime2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sms_time]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[sms_time]"
+                          name="sms_time"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[duration]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[duration]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[duration]"
+                          name="duration"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CHARGEABLEAMOUNT]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CHARGEABLEAMOUNT]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CHARGEABLEAMOUNT]"
+                          name="CHARGEABLEAMOUNT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[COSID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[COSID]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[COSID]"
+                          name="COSID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[application_subtype]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[application_subtype]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[application_subtype]"
+                          name="application_subtype"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[ACTIVITY_DIRECTION]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ACTIVITY_DIRECTION]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[ACTIVITY_DIRECTION]"
+                          name="ACTIVITY_DIRECTION"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTAL_NON_CURRENCY_CHARGE]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TOTAL_NON_CURRENCY_CHARGE]"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTAL_NON_CURRENCY_CHARGE]"
+                          name="TOTAL_NON_CURRENCY_CHARGE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[DISCOUNT_ALCS_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DISCOUNT_ALCS_ID]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[DISCOUNT_ALCS_ID]"
+                          name="DISCOUNT_ALCS_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CELL_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CELL_ID]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CELL_ID]"
+                          name="CELL_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CDR_CALL_TYPE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CDR_CALL_TYPE]"
+                          length="3"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[CDR_CALL_TYPE]"
+                          name="CDR_CALL_TYPE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[MSC_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MSC_ID]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[MSC_ID]"
+                          name="MSC_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[MSRN]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MSRN]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].Columns[MSRN]"
+                          name="MSRN"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TYPE_OF_CDR]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="TYPE_OF_CDR" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cdr_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="cdr_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[anumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="anumber" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DIALEDDIGITS]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DIALEDDIGITS" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[call_date]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="call_date" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sms_date]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="sms_date" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[call_start]"
+                          dataType="dbTime2"
+                          name="call_start"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[call_end]"
+                          dataType="dbTime2"
+                          name="call_end"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sms_time]"
+                          dataType="dbTime2"
+                          name="sms_time"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[duration]"
+                          dataType="r8"
+                          name="duration" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CHARGEABLEAMOUNT]"
+                          dataType="r8"
+                          name="CHARGEABLEAMOUNT" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[COSID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="COSID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[application_subtype]"
+                          dataType="i4"
+                          name="application_subtype" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ACTIVITY_DIRECTION]"
+                          dataType="i4"
+                          name="ACTIVITY_DIRECTION" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TOTAL_NON_CURRENCY_CHARGE]"
+                          dataType="r8"
+                          name="TOTAL_NON_CURRENCY_CHARGE" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DISCOUNT_ALCS_ID]"
+                          dataType="i4"
+                          name="DISCOUNT_ALCS_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CELL_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CELL_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CDR_CALL_TYPE]"
+                          dataType="i4"
+                          name="CDR_CALL_TYPE" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MSC_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MSC_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MSRN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MSRN" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TYPE_OF_CDR]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TYPE_OF_CDR]"
+                          name="TYPE_OF_CDR" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cdr_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cdr_type]"
+                          name="cdr_type" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[anumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[anumber]"
+                          name="anumber" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DIALEDDIGITS]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DIALEDDIGITS]"
+                          name="DIALEDDIGITS" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[call_date]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[call_date]"
+                          name="call_date" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sms_date]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sms_date]"
+                          name="sms_date" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[call_start]"
+                          dataType="dbTime2"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[call_start]"
+                          name="call_start"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[call_end]"
+                          dataType="dbTime2"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[call_end]"
+                          name="call_end"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sms_time]"
+                          dataType="dbTime2"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sms_time]"
+                          name="sms_time"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[duration]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[duration]"
+                          name="duration" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CHARGEABLEAMOUNT]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CHARGEABLEAMOUNT]"
+                          name="CHARGEABLEAMOUNT" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[COSID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[COSID]"
+                          name="COSID" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[application_subtype]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[application_subtype]"
+                          name="application_subtype" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ACTIVITY_DIRECTION]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ACTIVITY_DIRECTION]"
+                          name="ACTIVITY_DIRECTION" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TOTAL_NON_CURRENCY_CHARGE]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TOTAL_NON_CURRENCY_CHARGE]"
+                          name="TOTAL_NON_CURRENCY_CHARGE" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DISCOUNT_ALCS_ID]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DISCOUNT_ALCS_ID]"
+                          name="DISCOUNT_ALCS_ID" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CELL_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CELL_ID]"
+                          name="CELL_ID" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CDR_CALL_TYPE]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CDR_CALL_TYPE]"
+                          name="CDR_CALL_TYPE" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MSC_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MSC_ID]"
+                          name="MSC_ID" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MSRN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MSRN]"
+                          name="MSRN" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\Load RTB to Main temp.Paths[call]"
+                  endId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="call"
+                  startId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Outputs[call]" />
+                <path
+                  refId="Package\Sequence Container\Load RTB to Main temp.Paths[data]"
+                  endId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2.Inputs[OLE DB Destination Input]"
+                  name="data"
+                  startId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Outputs[data]" />
+                <path
+                  refId="Package\Sequence Container\Load RTB to Main temp.Paths[OLE DB Source Output]"
+                  endId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Inputs[Conditional Split Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Sequence Container\Load RTB to Main temp\OLE DB Source.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Sequence Container\Load RTB to Main temp.Paths[sms]"
+                  endId="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                  name="sms"
+                  startId="Package\Sequence Container\Load RTB to Main temp\Conditional Split.Outputs[sms]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{5B73CCFA-696B-4E0F-A604-320C5A41267C}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Sequence Container\Run DATA"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{5073BBF2-53A9-47F7-8E57-4E9ABF94F55F}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Run DATA"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{D58ECD58-90CE-4E08-9129-048FA7F9F06A}"
+                  SQLTask:SqlStatementSource="exec [dbo].[sp_P18SC12_Data]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Sequence Container\Run SMS"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{959586CF-42C3-45EB-8ACA-B2D10DBA5039}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Run SMS"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{D58ECD58-90CE-4E08-9129-048FA7F9F06A}"
+                  SQLTask:SqlStatementSource="exec [dbo].[sp_P18SC12_SMS]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Sequence Container\Run Voice"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{B2AED350-AF21-4DFB-BD75-5EB20CE167C2}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Run Voice"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{D58ECD58-90CE-4E08-9129-048FA7F9F06A}"
+                  SQLTask:SqlStatementSource="exec [dbo].[sp_P18SC12_voice]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Sequence Container\Run Voice Roaming"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{B7079A47-B239-4374-AE3C-D7C2345CB1C0}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Run Voice Roaming"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{D58ECD58-90CE-4E08-9129-048FA7F9F06A}"
+                  SQLTask:SqlStatementSource="exec sp_P18SC12_Roaming_voice" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{8CC5F203-6630-4B9A-910A-107BF02874F9}"
+              DTS:From="Package\Sequence Container\Sequence Container\Run Voice"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Sequence Container\Sequence Container\Run SMS" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{6A272095-CD61-49F7-A453-2A92172D9810}"
+              DTS:From="Package\Sequence Container\Sequence Container\Run SMS"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\Sequence Container\Sequence Container\Run DATA" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 2]"
+              DTS:CreationName=""
+              DTS:DTSID="{0914CC81-5AA2-4FB2-BE46-7A396799F136}"
+              DTS:From="Package\Sequence Container\Sequence Container\Run DATA"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 2"
+              DTS:To="Package\Sequence Container\Sequence Container\Run Voice Roaming" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Truncate tmp table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{28004028-931A-4A55-B911-71AF22BF7118}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate tmp table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D58ECD58-90CE-4E08-9129-048FA7F9F06A}"
+              SQLTask:SqlStatementSource="truncate table temp_P18SC12&#xA;truncate table temp2_P18SC12&#xA;truncate table temp3_P18SC12&#xA;truncate table temp4_P18SC12" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{3CD94AD8-65B8-4FBC-A29B-19FA5BE00A5C}"
+          DTS:From="Package\Sequence Container\Load RTB to Main temp"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\Sequence Container" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{D5A909A9-FC7C-4C7C-BC00-4886FB931322}"
+          DTS:From="Package\Sequence Container\Truncate tmp table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Sequence Container\Load RTB to Main temp" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="226,44"
+          Id="Package\Sequence Container\Load RTB to Main temp"
+          TopLeft="68.0377358490566,129.754716981132" />
+        <NodeLayout
+          Size="135,44"
+          Id="Package\Sequence Container\Sequence Container\Run DATA"
+          TopLeft="25.6981132075473,228.924528301887" />
+        <NodeLayout
+          Size="135,44"
+          Id="Package\Sequence Container\Sequence Container\Run SMS"
+          TopLeft="25.0188679245284,113.11320754717" />
+        <NodeLayout
+          Size="135,44"
+          Id="Package\Sequence Container\Sequence Container\Run Voice"
+          TopLeft="24.4150943396228,21.6037735849056" />
+        <NodeLayout
+          Size="135,44"
+          Id="Package\Sequence Container\Sequence Container\Run Voice Roaming"
+          TopLeft="24.4905660377358,324.735849056604" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="91.811320754717,65.5283018867926">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.603773584905639,47.5849056603772"
+              Start="0,0"
+              End="0.603773584905639,40.0849056603772">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.8113207547169" />
+                  <mssgle:LineSegment
+                    End="0.603773584905639,23.8113207547169" />
+                  <mssgle:LineSegment
+                    End="0.603773584905639,40.0849056603772" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="71.6603773584906,157.037735849057">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="21.433962264151,71.8867924528302"
+              Start="0,0"
+              End="21.433962264151,64.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.9245283018868" />
+                  <mssgle:LineSegment
+                    End="21.433962264151,53.9245283018868" />
+                  <mssgle:LineSegment
+                    End="21.433962264151,64.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="72.3396226415094,272.849056603774">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.5471698113208,51.8867924528302"
+              Start="0,0"
+              End="19.5471698113208,44.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.943396226415" />
+                  <mssgle:LineSegment
+                    End="19.5471698113208,38.943396226415" />
+                  <mssgle:LineSegment
+                    End="19.5471698113208,44.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.698113207547166"
+          IsExpanded="True"
+          PanelSize="232,424"
+          Size="232,468"
+          Id="Package\Sequence Container\Sequence Container"
+          TopLeft="62.3396226415093,251.11320754717" />
+        <NodeLayout
+          Size="232,44"
+          Id="Package\Sequence Container\Truncate tmp table"
+          TopLeft="66.0754716981132,22.2452830188677" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="139.471698113207,173.679245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39.0566037735849,77.433962264151"
+              Start="0,0"
+              End="39.0566037735849,69.933962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.0754716981132" />
+                  <mssgle:LineSegment
+                    End="39.0566037735849,58.0754716981132" />
+                  <mssgle:LineSegment
+                    End="39.0566037735849,69.933962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="182.150943396226,66.1698113207544">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1.16981132075477,63.5849056603774"
+              Start="0,0"
+              End="-1.16981132075477,56.0849056603774">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.8113207547171" />
+                  <mssgle:LineSegment
+                    End="-1.16981132075477,31.8113207547171" />
+                  <mssgle:LineSegment
+                    End="-1.16981132075477,56.0849056603774" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.698113207547166"
+          IsExpanded="True"
+          PanelSize="585,842"
+          Size="585,886"
+          Id="Package\Sequence Container"
+          TopLeft="157.297169811321,46753.6367924528" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sequence Container\Load RTB to Main temp">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 1"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Sequence Container\Load RTB to Main temp\OLE DB Source"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Sequence Container\Load RTB to Main temp\Conditional Split"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Sequence Container\Load RTB to Main temp\OLE DB Destination 2"
+          TopLeft="NaN,NaN" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Load RTB to Main temp.Paths[sms]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Load RTB to Main temp.Paths[OLE DB Source Output]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Load RTB to Main temp.Paths[data]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Load RTB to Main temp.Paths[call]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
